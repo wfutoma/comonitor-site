@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoMonitor Inc. | Transforming Clinical Trials</title>
+    <meta
+      name="description"
+      content="CoMonitor Inc. is a revolutionary startup changing the clinical trial industry with cutting-edge technology and strategic partnerships."
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* New Color Palette & Base Styles */
+      :root {
+        --primary-color: #005792;
+        --accent-color: #00aaff;
+        --bg-color: #f0f4f8;
+        --white: #ffffff;
+        --text-color: #333333;
+        --font-base: "Roboto", sans-serif;
+      }
+      /* Ensure scroll anchors account for sticky header - increased padding */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 130px; /* Increased scroll padding for navigation */
+      }
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-base);
+        background: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+      a {
+        text-decoration: none;
+        color: var(--primary-color);
+      }
+      a:hover {
+        color: var(--accent-color);
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* Centered Container */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      /* Header & Navigation */
+      header {
+        background: var(--white);
+        padding: 1.5rem 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: padding 0.3s ease, background 0.3s ease;
+      }
+      /* Shrunk header only changes padding */
+      header.shrink {
+        padding: 0.5rem 0;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+      .nav-list {
+        display: flex;
+        list-style: none;
+      }
+      .nav-list li {
+        margin: 0 1rem;
+      }
+      .nav-list li a {
+        font-weight: 500;
+      }
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-color);
+        margin: 4px 0;
+      }
+      @media (max-width: 768px) {
+        .nav-list {
+          flex-direction: column;
+          width: 100%;
+          display: none;
+        }
+        .nav-list.active {
+          display: flex;
+          background: var(--white);
+          padding: 1rem 0;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+        color: var(--white);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+      }
+      /* New two-column hero container */
+      .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .hero-content {
+        flex: 1;
+        text-align: left;
+        padding-right: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+      .btn {
+        background: var(--white);
+        color: var(--primary-color);
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+      .btn:hover {
+        background: var(--accent-color);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+      .hero-image {
+        flex: 1;
+        text-align: right;
+      }
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      @media (max-width: 768px) {
+        .hero-container {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-content {
+          padding-right: 0;
+        }
+        .hero-image {
+          margin-top: 2rem;
+        }
+      }
+
+      /* Section Headings */
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+        text-align: center;
+      }
+      .section-text {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      /* Product Cards */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        justify-items: center;
+        margin-bottom: 2rem;
+      }
+      .card {
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        transition: transform 0.3s ease;
+        text-align: center;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card-icon {
+        background: var(--accent-color);
+        color: var(--white);
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 50%;
+        font-size: 2rem;
+        margin: 0 auto 1rem;
+      }
+
+      /* Product Detail Sections */
+      .product-detail {
+        padding: 4rem 0;
+        background: var(--bg-color);
+      }
+      .product-detail-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .product-detail-content img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .product-detail-text {
+        max-width: 500px;
+        text-align: left;
+      }
+      .product-detail-text ul {
+        list-style-type: disc;
+        margin-left: 1.5rem;
+      }
+      .product-detail-text li {
+        margin-bottom: 0.75rem;
+      }
+
+      /* Startup Section */
+      .startup-section {
+        padding: 4rem 0;
+        background: var(--white);
+      }
+
+      /* Mailing List Section */
+      .mailing-section {
+        padding: 4rem 0;
+        background: var(--bg-color);
+      }
+      .mailing-form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .mailing-form input[type="email"] {
+        padding: 0.75rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+      .mailing-form button {
+        padding: 0.75rem;
+        background: var(--primary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .mailing-form button:hover {
+        background: var(--accent-color);
+      }
+      .mailing-note {
+        font-size: 0.9rem;
+        color: var(--text-color);
+      }
+
+      /* FAQ Section */
+      .faq-item {
+        max-width: 800px;
+        margin: 1rem auto;
+        text-align: left;
+      }
+      .faq-item h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+      .faq-item p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Contact Section */
+      .contact-details {
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 2rem 0;
+      }
+      footer p {
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate {
+        animation: fadeInUp 1s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="site-header">
+      <div class="container">
+        <nav aria-label="Main Navigation">
+          <div class="logo">CoMonitor Inc.</div>
+          <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-list" id="nav-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#startup">Our Startup</a></li>
+            <li><a href="#faq">FAQs</a></li>
+            <li><a href="#mailing">Updates</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section with Big Image on the Right -->
+    <section id="hero" class="hero" role="banner">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1>Innovating in Clinical Trials with Technology</h1>
+          <p>
+            We're a bold startup revolutionizing the clinical trial industry
+            through cutting-edge technology and customer-focused solutions.
+          </p>
+          <a href="#products" class="btn">Discover Our Solutions</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://via.placeholder.com/600x400?text=Hero+Image"
+            alt="Innovative Clinical Trials"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section id="products">
+      <div class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="product-grid">
+          <a href="#screening" class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <h3>Patient Screening App</h3>
+            <p>EMR integrated patient screening</p>
+          </a>
+          <a href="#dashboard" class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Clinical Trial Visualization Dashboard</h3>
+            <p>Data-driven metrics and reports</p>
+          </a>
+          <a href="#agentic" class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <h3>AI Agentic CRO</h3>
+            <p>Reshaping the Clinical Trial process with AI</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Details: Patient Screening App -->
+    <section id="screening" class="product-detail">
+      <div class="container">
+        <h2 class="section-title">Patient Screening App</h2>
+        <div class="product-detail-content">
+          <img
+            src="https://via.placeholder.com/800x450?text=Patient+Screening+App"
+            alt="Patient Screening App Screenshot"
+          />
+          <div class="product-detail-text">
+            <ul>
+              <li>Seamless integration with electronic health records and a hassle-free user experience</li>
+              <li>Match patients for any trial your site is running</li>
+	      <li>Our clinical experts will create protocol configurations for your studies that find the best prospective subjects</li>
+              <li>Locally installed, private software where no patient data leaves your network</li>
+              <li>Built-in metrics and pre-screening log to share with the study team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Details: Data Visualization Dashboard -->
+    <section id="dashboard" class="product-detail">
+      <div class="container">
+        <h2 class="section-title">Data Visualization Dashboard</h2>
+        <div class="product-detail-content">
+          <img
+            src="https://via.placeholder.com/800x450?text=Data+Visualization+Dashboard"
+            alt="Data Visualization Dashboard Screenshot"
+          />
+          <div class="product-detail-text">
+            <ul>
+              <li>The most up-to-date information from the ClinicalTrials.gov database</li>
+              <li>Customizable dashboards for sponsors and CROs</li>
+              <li>Interactive visual reports for informed decision making and reports</li>
+              <li>Handled data matching, study consolidation and more</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Details: Agentic CRO -->
+    <section id="agentic" class="product-detail">
+      <div class="container">
+        <h2 class="section-title">Agentic CRO</h2>
+        <div class="product-detail-content">
+          <img
+            src="https://via.placeholder.com/800x450?text=Agentic+CRO"
+            alt="Agentic CRO Screenshot"
+          />
+          <div class="product-detail-text">
+            <ul>
+              <li>A new approach to AI in Clinical Trials</li>
+              <li>Run trials with our network of AI Agents that work to complete all of the necessary tasks for your trials</li>
+              <li>Directly complete trials from our state of the art CTMS portal</li>
+              <li>Data-driven strategies for enhanced outcomes</li>
+              <li>Collaborative approach with sponsors and partners</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Startup Section -->
+    <section id="startup" class="startup-section">
+      <div class="container">
+        <h2 class="section-title">Our Startup Journey</h2>
+        <p class="section-text">
+          At CoMonitor Inc., we're not just another tech company – we're a startup
+          on a mission to redefine the clinical trial landscape. With innovative
+          solutions and a passionate team, we're breaking barriers and driving
+          positive change in clinical research.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h3>How do your tools reduce costs?</h3>
+          <p>
+            Our innovative solutions automate critical processes and provide
+            real‑time insights, reducing manual overhead and operational errors.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>What sets CoMonitor apart?</h3>
+          <p>
+            We are a forward-thinking startup focused exclusively on the clinical
+            trial industry, merging technology with deep industry expertise to
+            deliver unparalleled results. Our founder is a seasoned clinical trial
+            professional ready to provide real value solutions to your trials.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mailing List / Updates Section -->
+    <section id="mailing" class="mailing-section">
+      <div class="container">
+        <h2 class="section-title">Stay Updated</h2>
+        <p class="section-text">
+          Join our mailing list to receive the latest updates on our company
+          status, product launches, and industry insights.
+        </p>
+        <form class="mailing-form" action="#" method="post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+          <p class="mailing-note">
+            By subscribing, you agree to receive email updates about our products
+            and company news.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-details">
+          <p>
+            Wojciech Futoma<br />
+            <a href="mailto:wfutoma@comonitorinc.com">wfutoma@comonitorinc.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 CoMonitor Inc. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation, Collapsing Header and Intersection Animations -->
+    <script>
+      // Mobile Navigation Toggle
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navList = document.getElementById("nav-list");
+      mobileMenu.addEventListener("click", () => {
+        navList.classList.toggle("active");
+      });
+
+      // Collapsing Header on Scroll - Only changes the header box padding
+      const header = document.getElementById("site-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("shrink");
+        } else {
+          header.classList.remove("shrink");
+        }
+      });
+
+      // Intersection Observer for Section Animations
+      const animatedSections = document.querySelectorAll(".container");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      animatedSections.forEach((section) => observer.observe(section));
+    </script>
+  </body>
+</html>
