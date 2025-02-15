@@ -57,7 +57,6 @@
         max-width: 100%;
         display: block;
       }
-
       /* Centered Container */
       .container {
         width: 90%;
@@ -65,7 +64,6 @@
         margin: 0 auto;
         padding: 2rem 0;
       }
-
       /* Header & Navigation */
       header {
         background: var(--white);
@@ -76,7 +74,6 @@
         z-index: 1000;
         transition: padding 0.3s ease, background 0.3s ease;
       }
-      /* Shrunk header only changes padding */
       header.shrink {
         padding: 0.5rem 0;
       }
@@ -126,7 +123,6 @@
           display: flex;
         }
       }
-
       /* Hero Section */
       .hero {
         background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
@@ -136,7 +132,6 @@
         align-items: center;
         padding: 2rem;
       }
-      /* New two-column hero container */
       .hero-container {
         display: flex;
         align-items: center;
@@ -191,7 +186,6 @@
           margin-top: 2rem;
         }
       }
-
       /* Section Headings */
       .section-title {
         font-size: 2rem;
@@ -207,7 +201,6 @@
         margin-right: auto;
         text-align: center;
       }
-
       /* Product Cards */
       .product-grid {
         display: grid;
@@ -237,7 +230,6 @@
         font-size: 2rem;
         margin: 0 auto 1rem;
       }
-
       /* Product Detail Sections */
       .product-detail {
         padding: 4rem 0;
@@ -251,9 +243,13 @@
         gap: 2rem;
       }
       .product-detail-content img {
-        max-width: 100%;
+        max-width: 500px;
+        width: 100%;
+        height: auto;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        cursor: pointer;
       }
       .product-detail-text {
         max-width: 500px;
@@ -266,14 +262,12 @@
       .product-detail-text li {
         margin-bottom: 0.75rem;
       }
-
       /* Startup Section */
       .startup-section {
         padding: 4rem 0;
         background: var(--white);
       }
-
-      /* Mailing List Section */
+      /* Mailing List Section (Unused for contact form) */
       .mailing-section {
         padding: 4rem 0;
         background: var(--bg-color);
@@ -285,7 +279,8 @@
         flex-direction: column;
         gap: 1rem;
       }
-      .mailing-form input[type="email"] {
+      .mailing-form input,
+      .mailing-form textarea {
         padding: 0.75rem;
         border: 1px solid var(--primary-color);
         border-radius: 5px;
@@ -308,12 +303,48 @@
         font-size: 0.9rem;
         color: var(--text-color);
       }
-
+      /* Contact Section with Email Form */
+      .contact-section {
+        padding: 4rem 0;
+        background: var(--bg-color);
+      }
+      .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        padding: 0.75rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+      .contact-form button {
+        padding: 0.75rem;
+        background: var(--primary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .contact-form button:hover {
+        background: var(--accent-color);
+      }
+      .contact-details {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem; /* Added padding between text and form */
+      }
       /* FAQ Section */
       .faq-item {
-        max-width: 800px;
-        margin: 1rem auto;
-        text-align: left;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ccc;
       }
       .faq-item h3 {
         font-size: 1.25rem;
@@ -322,26 +353,55 @@
       }
       .faq-item p {
         font-size: 1rem;
-        margin-bottom: 1rem;
+        line-height: 1.5;
       }
-
-      /* Contact Section */
-      .contact-details {
-        font-size: 1.1rem;
-        text-align: center;
-      }
-
       /* Footer */
       footer {
         background: var(--primary-color);
         color: var(--white);
         padding: 2rem 0;
       }
+      footer .footer-logo {
+        display: block;
+        max-width: 150px;
+        margin: 0 auto 1rem;
+      }
+      footer .slogan {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
       footer p {
         text-align: center;
         font-size: 1rem;
       }
-
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+      }
+      .close {
+        position: absolute;
+        top: 30px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
       /* Animations */
       @keyframes fadeInUp {
         from {
@@ -374,7 +434,6 @@
             <li><a href="#products">Products</a></li>
             <li><a href="#startup">Our Startup</a></li>
             <li><a href="#faq">FAQs</a></li>
-            <li><a href="#mailing">Updates</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -387,16 +446,12 @@
         <div class="hero-content">
           <h1>Innovating in Clinical Trials with Technology</h1>
           <p>
-            We're a bold startup revolutionizing the clinical trial industry
-            through cutting-edge technology and customer-focused solutions.
+            We're a bold startup revolutionizing the clinical trial industry through cutting-edge technology and customer-focused solutions.
           </p>
           <a href="#products" class="btn">Discover Our Solutions</a>
         </div>
         <div class="hero-image">
-          <img
-            src="https://via.placeholder.com/600x400?text=Hero+Image"
-            alt="Innovative Clinical Trials"
-          />
+          <img src="images/tech.png" alt="Innovative Clinical Trials" />
         </div>
       </div>
     </section>
@@ -404,7 +459,7 @@
     <!-- Our Products Section -->
     <section id="products">
       <div class="container">
-        <h2 class="section-title">Our Products</h2>
+        <h2 class="section-title">Our Products in Development</h2>
         <div class="product-grid">
           <a href="#screening" class="card">
             <div class="card-icon">
@@ -424,8 +479,8 @@
             <div class="card-icon">
               <i class="fa-solid fa-handshake"></i>
             </div>
-            <h3>AI Agentic CRO</h3>
-            <p>Reshaping the Clinical Trial process with AI</p>
+            <h3>Overseer</h3>
+            <p>An AI Agentic CRO set to reshape Clinical Research</p>
           </a>
         </div>
       </div>
@@ -437,14 +492,15 @@
         <h2 class="section-title">Patient Screening App</h2>
         <div class="product-detail-content">
           <img
-            src="https://via.placeholder.com/800x450?text=Patient+Screening+App"
+            src="images/PatientScreeningAppImage.png"
             alt="Patient Screening App Screenshot"
+            class="clickable"
           />
           <div class="product-detail-text">
             <ul>
               <li>Seamless integration with electronic health records and a hassle-free user experience</li>
               <li>Match patients for any trial your site is running</li>
-	      <li>Our clinical experts will create protocol configurations for your studies that find the best prospective subjects</li>
+              <li>Our clinical experts will create protocol configurations for your studies that find the best prospective subjects</li>
               <li>Locally installed, private software where no patient data leaves your network</li>
               <li>Built-in metrics and pre-screening log to share with the study team</li>
             </ul>
@@ -459,8 +515,9 @@
         <h2 class="section-title">Data Visualization Dashboard</h2>
         <div class="product-detail-content">
           <img
-            src="https://via.placeholder.com/800x450?text=Data+Visualization+Dashboard"
+            src="images/CTDataApp.jpg"
             alt="Data Visualization Dashboard Screenshot"
+            class="clickable"
           />
           <div class="product-detail-text">
             <ul>
@@ -477,11 +534,12 @@
     <!-- Product Details: Agentic CRO -->
     <section id="agentic" class="product-detail">
       <div class="container">
-        <h2 class="section-title">Agentic CRO</h2>
+        <h2 class="section-title">Overseer AI Agentic CRO</h2>
         <div class="product-detail-content">
           <img
-            src="https://via.placeholder.com/800x450?text=Agentic+CRO"
+            src="images/AIAGenticCROSnap.png"
             alt="Agentic CRO Screenshot"
+            class="clickable"
           />
           <div class="product-detail-text">
             <ul>
@@ -501,10 +559,10 @@
       <div class="container">
         <h2 class="section-title">Our Startup Journey</h2>
         <p class="section-text">
-          At CoMonitor Inc., we're not just another tech company – we're a startup
-          on a mission to redefine the clinical trial landscape. With innovative
-          solutions and a passionate team, we're breaking barriers and driving
-          positive change in clinical research.
+          At CoMonitor Inc., we're not just another tech company – we're a startup on a mission to redefine the clinical trial landscape. With innovative solutions and a passionate team, we're breaking barriers and driving positive change in clinical research.
+        </p>
+        <p class="section-text">
+          Demos of our solutions are available for you and your teams! We are currently collecting initial feedback and validation from clinical trial stakeholders. If you or your colleagues have any comments, insights or feedback to provide please feel free to share with our team.
         </p>
       </div>
     </section>
@@ -516,67 +574,57 @@
         <div class="faq-item">
           <h3>How do your tools reduce costs?</h3>
           <p>
-            Our innovative solutions automate critical processes and provide
-            real‑time insights, reducing manual overhead and operational errors.
+            Our innovative solutions automate critical processes and provide real‑time insights, reducing manual overhead and operational errors.
           </p>
         </div>
         <div class="faq-item">
           <h3>What sets CoMonitor apart?</h3>
           <p>
-            We are a forward-thinking startup focused exclusively on the clinical
-            trial industry, merging technology with deep industry expertise to
-            deliver unparalleled results. Our founder is a seasoned clinical trial
-            professional ready to provide real value solutions to your trials.
+            We are a forward-thinking startup focused exclusively on the clinical trial industry, merging technology with deep industry expertise to deliver unparalleled results. Our founder is a seasoned clinical trial professional ready to provide real value solutions to your trials.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Mailing List / Updates Section -->
-    <section id="mailing" class="mailing-section">
+    <!-- Contact Section with Email Form -->
+    <section id="contact" class="contact-section">
       <div class="container">
-        <h2 class="section-title">Stay Updated</h2>
-        <p class="section-text">
-          Join our mailing list to receive the latest updates on our company
-          status, product launches, and industry insights.
-        </p>
-        <form class="mailing-form" action="#" method="post">
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-          <button type="submit">Subscribe</button>
-          <p class="mailing-note">
-            By subscribing, you agree to receive email updates about our products
-            and company news.
-          </p>
-        </form>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
+        <h2 class="section-title">Let's Connect</h2>
         <div class="contact-details">
           <p>
-            Wojciech Futoma<br />
-            <a href="mailto:wfutoma@comonitorinc.com">wfutoma@comonitorinc.com</a>
+            Interested in co-developing, partnering, collaborating with us or learn more about us? Fill out the form below and let's start a conversation!.
           </p>
         </div>
+        <form
+          class="contact-form"
+          action="mailto:wfutoma@comonitorinc.com?subject=Collaboration%20Inquiry&body=Hello%20CoMonitor%20Inc.,%0D%0A%0D%0AI%20am%20interested%20in%20collaborating/partnering/co-developing%20innovative%20solutions.%20Please%20let%20me%20know%20how%20we%20can%20connect.%0D%0A%0D%0ARegards,"
+          method="post"
+          enctype="text/plain"
+        >
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
       </div>
     </section>
 
     <!-- Footer -->
     <footer>
       <div class="container">
+        <img class="footer-logo" src="images/company-logo.png" alt="Company Logo" />
+        <p class="slogan">Your Company Slogan Goes Here</p>
         <p>&copy; 2025 CoMonitor Inc. All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- JavaScript for Mobile Navigation, Collapsing Header and Intersection Animations -->
+    <!-- Modal for Larger Image -->
+    <div id="modal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modal-img" />
+    </div>
+
+    <!-- JavaScript for Mobile Navigation, Collapsing Header, Intersection Animations & Modal -->
     <script>
       // Mobile Navigation Toggle
       const mobileMenu = document.getElementById("mobile-menu");
@@ -584,8 +632,7 @@
       mobileMenu.addEventListener("click", () => {
         navList.classList.toggle("active");
       });
-
-      // Collapsing Header on Scroll - Only changes the header box padding
+      // Collapsing Header on Scroll
       const header = document.getElementById("site-header");
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
@@ -594,7 +641,6 @@
           header.classList.remove("shrink");
         }
       });
-
       // Intersection Observer for Section Animations
       const animatedSections = document.querySelectorAll(".container");
       const observer = new IntersectionObserver(
@@ -609,6 +655,24 @@
         { threshold: 0.2 }
       );
       animatedSections.forEach((section) => observer.observe(section));
+      // Modal Code for Clickable Images
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modal-img");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      document.querySelectorAll(".product-detail-content img.clickable").forEach((img) => {
+        img.addEventListener("click", function () {
+          modal.style.display = "block";
+          modalImg.src = this.src;
+        });
+      });
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>
